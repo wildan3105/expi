@@ -1,0 +1,21 @@
+{
+  "name": "simple-api",
+  "version": "0.0.1",
+  "description": "Simple API with express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api"
+  ],
+  "dependencies": {
+	"express":"~4.0.0",
+	"mongoose":"~3.6.13",
+	"body-parser":"~1.0.1",
+	"pm2":"2.0.19",
+  "pug":"2.0.0-beta6"
+},
+  "author": "wildan",
+  "license": "MIT"
+}
