@@ -19,7 +19,13 @@ router.get('/temps/create', function(req,res){
 })
 
 router.get('/temps/update', function(req,res){
-  res.render('temps-update', {title:'Update temp'})
+  Temp.find(function(err, temps){
+    if(err){
+      res.send(err)
+    }
+    console.log(temps)
+    res.render('temps-update', {title:'Update temp', temps:temps})
+  })
 })
 
 router.route('/temps')
