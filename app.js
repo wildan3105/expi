@@ -1,8 +1,9 @@
-var express     = require('express')
-var app         = express()
-var bodyParser  = require('body-parser')
-var mongoose    = require('mongoose')
-var port        = process.env.PORT || 4000;
+var express         = require('express')
+var app             = express()
+var bodyParser      = require('body-parser')
+var mongoose        = require('mongoose')
+var methodOverride  = require('method-override')
+var port            = process.env.PORT || 4000;
 
 // routes
 var Temp    = require('./models/temp')
@@ -14,6 +15,7 @@ mongoose.connect('mongodb://localhost:27017/api')
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
+app.use(methodOverride('_method'))
 app.set('view engine', 'jade')
 app.set('views', './views')
 app.use('/api', temps)

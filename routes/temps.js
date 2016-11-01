@@ -109,24 +109,25 @@ router.route('/temps/:temp_id')
     })
   })
 
-  // DELETE ONE is
+  // DELETE ONE is OK
   .delete(function(req,res){
-    Temp.findById(req.params.temp_id, function(err, temp){
-      if(err){
-        res.send(err)
-      } else {
-        Temp.remove({
-          _id: req.params.temp_id
-          },
-          function(err, temp){
-            if(err){
-              res.send(err)
-            }
-            res.json({message: 'Successfull delete'})
+    Temp.remove({
+        _id: req.params.temp_id
+        },
+        function(err, temp){
+          if(err){
+            res.send(err)
           }
-        )
-      }
-    })
+          res.format({
+            json: function(){
+              res.send({message: 'Temp deleted : '})
+            },
+            html: function(){
+              res.redirect('/api/temps')
+            }
+          })
+        }
+      )
   })
 
   module.exports = router;
