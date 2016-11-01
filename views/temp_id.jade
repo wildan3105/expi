@@ -3,7 +3,7 @@ html
     title=title
   body
     p Showing single temp
-    form(name='edit', action='/api/temps/#{temp._id}', method='post', enctype='application/x-www-form-urlencoded')
+    form(name='edit', action='/api/temps/#{temp._id}?_method=PUT', method='post', enctype='application/x-www-form-urlencoded')
       label name
       input(type='text', value='#{temp.name}', name='name')
       br

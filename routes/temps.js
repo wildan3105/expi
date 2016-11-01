@@ -85,7 +85,7 @@ router.route('/temps/:temp_id')
   })
 
   // UPDATE ONE is OK
-  .post(function(req, res){
+  .put(function(req, res){
     Temp.findById(req.params.temp_id, function(err, temp){
       if(err){
         res.send(err)

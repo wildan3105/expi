@@ -2,13 +2,12 @@ html
   head
     title=title
   body
-    p Showing all temperatures
+    p Showing all temperatures : 0
     each temp, i in temps
       li
-          p=temp._id
-          p=temp.name
+          p=temp.name  
+          a(href='./temps/#{temp._id}') Detail
           p
-            a(href='./temps/#{temp._id}') Detail
       form(name='delete', action='/api/temps/#{temp._id}?_method=DELETE', method='post', enctype='application/x-www-form-urlencoded')
         button(type='submit') Delete
           
