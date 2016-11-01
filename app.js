@@ -1,8 +1,8 @@
 var express     = require('express')
 var app         = express()
 var bodyParser  = require('body-parser')
-var mongoose = require('mongoose')
-var port = process.env.PORT || 4000;
+var mongoose    = require('mongoose')
+var port        = process.env.PORT || 4000;
 
 // routes
 var Temp    = require('./models/temp')
@@ -23,6 +23,5 @@ app.get('/', function (req, res) {
   res.render('index', { title: 'Simple-API', message: 'Temps and Humidity'});
 });
 
-// start server
 app.listen(port)
 console.log('listening on port', port)

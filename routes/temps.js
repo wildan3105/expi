@@ -1,7 +1,7 @@
 var express = require('express')
 var app     = express()
-var Temp = require('../models/temp')
-var router = express.Router()
+var Temp    = require('../models/temp')
+var router  = express.Router()
 
 //middleware to use for all requests
 router.use(function(req, res, next){
@@ -16,16 +16,6 @@ router.get('/', function(req,res){
 
 router.get('/temps/create', function(req,res){
   res.render('temps-create', {title:'Create temp'})
-})
-
-router.get('/temps/update', function(req,res){
-  Temp.find(function(err, temps){
-    if(err){
-      res.send(err)
-    }
-    console.log(temps)
-    res.render('temps-update', {title:'Update temp', temps:temps})
-  })
 })
 
 router.route('/temps')
@@ -137,6 +127,6 @@ router.route('/temps/:temp_id')
         )
       }
     })
-    })
+  })
 
   module.exports = router;
