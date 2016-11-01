@@ -36,8 +36,20 @@ router.route('/humids')
     Humid.find(function(err, humids){
       if(err){
         res.send(err)
+      } else {
+        console.log(humids)
+        res.format({
+          json: function(){
+            res.json(humids)
+          },
+          html: function(){
+          res.render('humids', {
+                  title: 'All humids',
+                  humids: humids
+              });
+          },
+        });
       }
-      res.json(humids)
     })
   })
 

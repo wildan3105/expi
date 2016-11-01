@@ -29,11 +29,11 @@ router.get('/temps/update', function(req,res){
 })
 
 router.route('/temps')
-  //
+  // POST is OK
   .post(function(req,res){
     var temp = new Temp()
     temp.name = req.body.name
-    
+
     temp.save(function(err){
       if(err){
         res.send(err)
@@ -50,8 +50,7 @@ router.route('/temps')
       }
     })
   })
-
-  // get all temps (accessed at GET http://localhost:4000/api/temps)
+  // GET ALL is OK
   .get(function(req,res){
     Temp.find(function(err, temps){
       if(err){
@@ -65,26 +64,33 @@ router.route('/temps')
           html: function(){
           res.render('temps', {
                   title: 'All temps',
-                  message: temps
+                  temps: temps
               });
           },
-          'default': function(){
-            res.status(406).send('not acceptable')
-          }
         });
       }
     })
   })
 
-// single routes
+// SINGLE GET is OK
 router.route('/temps/:temp_id')
-  // get temp with id (GET http://localhost:4000/api/temps/:temp_id)
   .get(function(req, res){
     Temp.findById(req.params.temp_id, function(err, temp){
       if(err){
         res.send(err)
+      } else {
+        res.format({
+          json: function(){
+            res.json(temp)
+          },
+          html: function(){
+            res.render('temp_id', {
+              title: 'Individual temp',
+              temp:temp
+            })
+          }
+        })
       }
-      res.json(temp)
     })
   })
 
