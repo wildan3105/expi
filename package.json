@@ -14,7 +14,7 @@
 	"mongoose":"~3.6.13",
 	"body-parser":"~1.0.1",
 	"pm2":"2.0.19",
-  "pug":"2.0.0-beta6"
+  	"jade":"0.26.1"
 },
   "author": "wildan",
   "license": "MIT"

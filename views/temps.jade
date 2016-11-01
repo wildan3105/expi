@@ -1,0 +1,20 @@
+html
+  head
+    title=title
+  body
+    p Showing all temperatures
+    table(id='temp')
+      tr
+        th Id
+        th Name
+        th UPDATE
+        th DELETE
+          each temp in temps
+            tr
+              td= temp._id
+              td= temp.name
+              td a(href='update')
+              td a(href='delete')
+    a(href='../../') Back to home
+    p
+    a(href='./temps/create') Create temp

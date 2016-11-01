@@ -113,7 +113,7 @@ router.route('/temps/:temp_id')
     })
   })
 
-  // DELETE ONE is 
+  // DELETE ONE is
   .delete(function(req,res){
     Temp.remove({
       _id: req.params.temp_id
