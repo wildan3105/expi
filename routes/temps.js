@@ -94,7 +94,7 @@ router.route('/temps/:temp_id')
     })
   })
 
-  // update (PUT http://localhost:4000/api/temps/:temp_id)
+  // UPDATE ONE is
   .put(function(req, res){
     Temp.findById(req.params.temp_id, function(err, temp){
       if(err){
@@ -113,7 +113,7 @@ router.route('/temps/:temp_id')
     })
   })
 
-  // delete temp with id (DELETE http://localhost:4000/api/temps)
+  // DELETE ONE is 
   .delete(function(req,res){
     Temp.remove({
       _id: req.params.temp_id
