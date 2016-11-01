@@ -9,10 +9,11 @@ html
           p=temp.name
           p
             a(href='./temps/#{temp._id}') Detail
-          form(name='delete', action='/api/temps/#{temp._id}', method='post', enctype='application/x-www-form-urlencoded')
+          form(name='delete', action='./temps/#{temp._id}', method='post', enctype='application/x-www-form-urlencoded')
             input(type='hidden',value='DELETE',name='_method')
             button(type='submit').
               Delete
+          hr
               
     a(href='./temps/create') Create temp
     p
