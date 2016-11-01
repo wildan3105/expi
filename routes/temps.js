@@ -29,18 +29,25 @@ router.get('/temps/update', function(req,res){
 })
 
 router.route('/temps')
-  // create a temp (accessed at POST http://localhost:4000/api/temps)
+  //
   .post(function(req,res){
     var temp = new Temp()
     temp.name = req.body.name
-
-    // save the temp and check for error
+    
     temp.save(function(err){
       if(err){
         res.send(err)
       }
-      // if success
-      res.json({message: 'Temp created is : ' + temp.name})
+      else {
+        res.format({
+          json: function(){
+            res.send({message: 'Temp created : '+ temp.name})
+          },
+          html: function(){
+            res.send('<p> Status : OK </p><a href="">Back to temps</a>')
+          }
+        })
+      }
     })
   })
 
@@ -49,19 +56,23 @@ router.route('/temps')
     Temp.find(function(err, temps){
       if(err){
         res.send(err)
-      }
-      console.log(temps)
-      res.format({
-        html: function(){
+      } else {
+        console.log(temps)
+        res.format({
+          json: function(){
+            res.json(temps)
+          },
+          html: function(){
           res.render('temps', {
                   title: 'All temps',
                   message: temps
               });
-        },
-        json: function(){
-            res.json(temps);
-        }
-      });
+          },
+          'default': function(){
+            res.status(406).send('not acceptable')
+          }
+        });
+      }
     })
   })
 
