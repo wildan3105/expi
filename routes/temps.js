@@ -23,7 +23,7 @@ router.route('/temps')
   .post(function(req,res){
     var temp = new Temp()
     temp.name     = req.body.name
-    temp.category = req.body.categories
+    temp.category = req.body.category
 
     temp.save(function(err){
       if(err){
@@ -32,7 +32,7 @@ router.route('/temps')
       else {
         res.format({
           json: function(){
-            res.send({message: 'Temp created : '+ temp.name + ' with category : '+ temp.category})
+            res.send({message: 'Temp created : '+ temp.name})
           },
           html: function(){
             res.redirect('/api/temps')
@@ -47,6 +47,7 @@ router.route('/temps')
       if(err){
         res.send(err)
       } else {
+        var category = req.params.category
         console.log(temps)
         res.format({
           json: function(){
