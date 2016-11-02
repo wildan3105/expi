@@ -2,19 +2,27 @@ html
   head
     title=title
   body
-    p Showing all temperatures : 0
-    each temp, i in temps
-      li
-          p=temp.name  
-          a(href='./temps/#{temp._id}') Detail
-          p
-      form(name='delete', action='/api/temps/#{temp._id}?_method=DELETE', method='post', enctype='application/x-www-form-urlencoded')
-        button(type='submit') Delete
-          
-      hr
-              
+    p Showing all temperatures
+    table
+      tr
+        th Id
+        th Value
+        th Category
+        th UPDATE
+        th DELETE
+          each temp in temps
+            tr
+              td=temp._id 
+              td=temp.name
+              td=temp.category
+              td 
+                form(name='delete', action='./temps/#{temp._id}', method='', enctype='application/x-www-form-urlencoded')
+                  button(type='submit') Update
+              td 
+                form(name='delete', action='/api/temps/#{temp._id}?_method=DELETE', method='post', enctype='application/x-www-form-urlencoded')
+                  button(type='submit') Delete            
     a(href='./temps/create') Create temp
     p
-    a(href='../../') Back to home
+    a(href='  ../../') Back to home
     
     
