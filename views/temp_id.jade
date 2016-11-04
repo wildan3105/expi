@@ -4,8 +4,10 @@ html
   body
     p Showing single temp
     form(name='edit', action='/api/temps/#{temp._id}?_method=PUT', method='post', enctype='application/x-www-form-urlencoded')
-      label name
+      label Value
       input(type='text', value='#{temp.name}', name='name')
+      label Category
+      input(type='text', value='#{temp.category}', name='category')
       br
       input(type='submit', value='update')
                   

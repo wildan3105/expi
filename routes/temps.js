@@ -18,6 +18,18 @@ router.get('/temps/create', function(req,res){
   res.render('temps-create', {title:'Create temp'})
 })
 
+// another route
+router.get('/temps/:category', function(req,res){
+  var cat = req.params.category
+  Temp.find({category:cat}, function(e,s){
+    if(e){
+      res.send(e)
+    }
+    var temps = s
+    res.json(temps)
+  })
+})
+
 router.route('/temps')
   // POST is OK
   .post(function(req,res){
@@ -48,11 +60,11 @@ router.route('/temps')
         res.send(err)
       } else {
         var category = req.query.category
+
         console.log(temps)
         res.format({
           json: function(){
             res.json(temps)
-            res.json(category)
           },
           html: function(){
             res.render('temps', {
@@ -95,6 +107,7 @@ router.route('/temps/:temp_id')
       } else {
         console.log('update one')
         temp.name = req.body.name;
+        temp.category = req.body.category;
         temp.save(function(err){
           if(err){
             res.send(err)
