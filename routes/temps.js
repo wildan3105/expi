@@ -47,14 +47,15 @@ router.route('/temps')
       if(err){
         res.send(err)
       } else {
-        var category = req.params.category
+        var category = req.query.category
         console.log(temps)
         res.format({
           json: function(){
             res.json(temps)
+            res.json(category)
           },
           html: function(){
-          res.render('temps', {
+            res.render('temps', {
                   title: 'All temps',
                   temps: temps
               });
