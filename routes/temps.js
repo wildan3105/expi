@@ -70,6 +70,16 @@ router.route('/temps')
     })
   })
 
+router.get('/temp?', function(req,res){
+  var cat = req.query.category
+  Temp.find({category:cat}, function(e,s){
+    if(e){
+      res.send(e)
+    }
+    res.json(s)
+  })
+})
+
 router.get('/temps/category/:category', function(req,res){
   var cat = req.params.category
   Temp.find({category:cat}, function(e,s){
