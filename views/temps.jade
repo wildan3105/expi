@@ -8,6 +8,7 @@ html
         th Id
         th Value
         th Category
+        th Safe?
         th UPDATE
         th DELETE
           each temp in temps
@@ -15,6 +16,7 @@ html
               td=temp._id 
               td=temp.name
               td=temp.category
+              td=temp.safe
               td 
                 form(name='delete', action='./temps/#{temp._id}', method='', enctype='application/x-www-form-urlencoded')
                   button(type='submit') Update

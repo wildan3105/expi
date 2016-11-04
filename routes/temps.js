@@ -4,11 +4,11 @@ var Temp    = require('../models/temp')
 var router  = express.Router()
 
 //middleware to use for all requests
-router.use(function(req, res, next){
-  // console out
-  console.log('something is happening')
-  next() // go to next route and not stop here
-})
+// router.use(function(req, res, next){
+//   // console out
+//   console.log('something is happening')
+//   next() // go to next route and not stop here
+// })
 
 router.get('/', function(req,res){
   res.json({message: 'Welcome to Simple API!'})
@@ -18,27 +18,10 @@ router.get('/temps/create', function(req,res){
   res.render('temps-create', {title:'Create temp'})
 })
 
-// another route
-router.get('/temps/:category', function(req,res){
-  var cat = req.params.category
-  Temp.find({category:cat}, function(e,s){
-    if(e){
-      res.json({message: "There are no temps with category : " + cat})
-    }
-    var temps = s
-    res.json(temps)
-  })
-})
-
-router.get('/temps?:category', function(req,res){
-  var cat = req.query.category
-  Temp.find({category:cat}, function(e,s){
-    if(e){
-      res.json({message: "There are no temps with category : " + cat})
-    }
-    var temps = s
-    res.json(temps)
-  })
+router.use(function(req, res, next){
+  // console out
+  console.log('something is happening')
+  next() // go to next route and not stop here
 })
 
 router.route('/temps')
@@ -47,6 +30,7 @@ router.route('/temps')
     var temp = new Temp()
     temp.name     = req.body.name
     temp.category = req.body.category
+    temp.safe = req.body.safe
 
     temp.save(function(err){
       if(err){
@@ -70,8 +54,6 @@ router.route('/temps')
       if(err){
         res.send(err)
       } else {
-        var category = req.query.category
-
         console.log(temps)
         res.format({
           json: function(){
@@ -87,6 +69,22 @@ router.route('/temps')
       }
     })
   })
+
+router.get('/temps/category/:category', function(req,res){
+  var cat = req.params.category
+  Temp.find({category:cat}, function(e,s){
+    if(e){
+      res.send(e)
+    }
+    res.json(s)
+  })
+})
+
+router.use(function(req, res, next){
+  // console out
+  console.log('something is happening')
+  next() // go to next route and not stop here
+})
 
 // SINGLE GET is OK
 router.route('/temps/:temp_id')
@@ -117,8 +115,9 @@ router.route('/temps/:temp_id')
         res.send(err)
       } else {
         console.log('update one')
-        temp.name = req.body.name;
-        temp.category = req.body.category;
+        temp.name = req.body.name
+        temp.category = req.body.category
+        temp.safe = req.body.safe
         temp.save(function(err){
           if(err){
             res.send(err)
