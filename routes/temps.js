@@ -23,7 +23,18 @@ router.get('/temps/:category', function(req,res){
   var cat = req.params.category
   Temp.find({category:cat}, function(e,s){
     if(e){
-      res.send(e)
+      res.json({message: "There are no temps with category : " + cat})
+    }
+    var temps = s
+    res.json(temps)
+  })
+})
+
+router.get('/temps?:category', function(req,res){
+  var cat = req.query.category
+  Temp.find({category:cat}, function(e,s){
+    if(e){
+      res.json({message: "There are no temps with category : " + cat})
     }
     var temps = s
     res.json(temps)
