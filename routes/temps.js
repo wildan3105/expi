@@ -70,30 +70,35 @@ router.route('/temps')
     })
   })
 
-router.get('/temp?', function(req,res){
+// query
+router.get('/temp?', function(req,res,next){
   var cat = req.query.category
-  Temp.find({category:cat}, function(e,s){
-    if(e){
-      res.send(e)
-    }
-    res.json(s)
-  })
-})
-
-router.get('/temps/category/:category', function(req,res){
-  var cat = req.params.category
-  Temp.find({category:cat}, function(e,s){
-    if(e){
-      res.send(e)
-    }
-    res.json(s)
-  })
-})
-
-router.use(function(req, res, next){
-  // console out
-  console.log('something is happening')
-  next() // go to next route and not stop here
+  var safe = req.query.safe
+  if(req.query.category && req.query.safe){
+    Temp.find({$and:[{category:cat}, {safe:safe}]}, function(e,f){
+      if(e){
+        res.send(e)
+      }
+      res.json(f)
+    })
+  }
+  else if(req.query.category){
+    Temp.find({category:cat}, function(e,c){
+      if(e){
+        res.send(e)
+      }
+      res.json(c)
+    })
+  } else if(req.query.safe){
+    Temp.find({safe:safe}, function(e,s){
+      if(e){
+        res.send(e)
+      }
+      res.json(s)
+    })
+  } else {
+    next()
+  }
 })
 
 // SINGLE GET is OK
