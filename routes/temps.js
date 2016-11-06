@@ -14,6 +14,13 @@ router.get('/', function(req,res){
   res.json({message: 'Welcome to Simple API!'})
 })
 
+router.get('/temps.json', function(req,res){
+  Temp.find({}, function(e,s){
+    if(e) res.send(e)
+    res.json(s)
+  })
+})
+
 router.get('/temps/create', function(req,res){
   res.render('temps-create', {title:'Create temp'})
 })
