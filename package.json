@@ -4,7 +4,7 @@
   "description": "Simple API with express",
   "main": "index.js",
   "scripts": {
-    "test": "node app.js"
+    "test": "./node_modules/jshint/bin/jshint app.js"
   },
   "keywords": [
     "api"
@@ -15,7 +15,8 @@
 	"body-parser":"~1.0.1",
 	"pm2":"2.0.19",
   	"jade":"0.26.1",
-	"method-override":"^2.3.1"
+	"method-override":"^2.3.1",
+	"jshint":"2.9.4"
 },
   "author": "wildan",
   "license": "MIT"
