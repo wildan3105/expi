@@ -3,6 +3,6 @@ language: node_js
 services: mongodb
 before_script:
   - sleep 15
-  - mongo mydb_test --eval 'db.addUser("travis", "test");'
+  - mongo mydb_test --eval 'db.addUser("travis", "api");'
 node_js:
 - "0.10.25"
