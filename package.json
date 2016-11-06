@@ -4,7 +4,7 @@
   "description": "Simple API with express",
   "main": "index.js",
   "scripts": {
-    "test": "sudo node app.js"
+    "test": "node app.js"
   },
   "keywords": [
     "api"
