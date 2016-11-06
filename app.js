@@ -23,7 +23,7 @@ app.use('/api', temps);
 app.use('/api', humids);
 
 app.get('/', function (req, res) {
-  res.json({message:"Welcome to our API"})
+  res.json({message:"Welcome to our API"});
 });
 
 app.listen(port)
