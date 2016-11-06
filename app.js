@@ -4,6 +4,7 @@ var bodyParser      = require('body-parser');
 var mongoose        = require('mongoose');
 var methodOverride  = require('method-override');
 var port            = process.env.PORT || 4000;
+var http            = require('http')
 
 // routes
 var Temp    = require('./models/temp');
@@ -25,5 +26,5 @@ app.get('/', function (req, res) {
   res.json({message:"Welcome to our API"})
 });
 
-app.listen(port);
-console.log('listening on port', port);
+app.listen(port)
+console.log('Server running at http://127.0.0.1:4000/');
