@@ -22,7 +22,7 @@ app.use('/api', temps);
 app.use('/api', humids);
 
 app.get('/', function (req, res) {
-  res.render('index', { title: 'Simple-API', message: 'Temps and Humidity'});
+  res.json({message:"Welcome to our API"})
 });
 
 app.listen(port);
