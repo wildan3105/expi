@@ -16,7 +16,8 @@
 	"pm2":"2.0.19",
   	"jade":"0.26.1",
 	"method-override":"^2.3.1",
-	"jshint":"2.9.4"
+	"jshint":"2.9.4",
+	"generator-badge":"1.2.0"
 },
   "author": "wildan",
   "license": "MIT"
